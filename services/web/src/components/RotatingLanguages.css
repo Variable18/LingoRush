@@ -1,0 +1,38 @@
+.lang-reel {
+  position: relative;
+  width: 100%;
+  max-width: 920px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.lang-track {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 6px;
+  transform: translateX(0);
+  animation: reelScroll 22s linear infinite;
+}
+
+.lang-card {
+  flex: 0 0 auto;
+  min-width: 160px;
+  padding: 14px 18px;
+  border-radius: 12px;
+  background: #ffffff;
+  border: 1px solid rgba(0,0,0,0.08);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+  text-align: center;
+}
+
+.lang-name {
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: #0a0a0a;
+}
+
+@keyframes reelScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}

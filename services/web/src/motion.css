@@ -1,0 +1,140 @@
+/* Motion-only CSS without Tailwind directives */
+/* Entry animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.98); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.motion-fade-in {
+  opacity: 0;
+  animation: fadeIn var(--dur-base, 320ms) var(--easing-soft, cubic-bezier(0.22, 1, 0.36, 1)) forwards;
+  animation-delay: var(--motion-delay, 0ms);
+  will-change: opacity;
+}
+
+.motion-fade-up {
+  opacity: 0;
+  transform: translateY(8px);
+  animation: fadeUp var(--dur-base, 320ms) var(--easing-soft, cubic-bezier(0.22, 1, 0.36, 1)) forwards;
+  animation-delay: var(--motion-delay, 0ms);
+  will-change: transform, opacity;
+}
+
+.motion-scale-in {
+  opacity: 0;
+  transform: scale(0.98);
+  animation: scaleIn var(--dur-base, 320ms) var(--easing-soft, cubic-bezier(0.22, 1, 0.36, 1)) forwards;
+  animation-delay: var(--motion-delay, 0ms);
+  will-change: transform, opacity;
+}
+
+/* Simple delay helpers */
+.delay-1 { --motion-delay: 100ms; }
+.delay-2 { --motion-delay: 200ms; }
+.delay-3 { --motion-delay: 300ms; }
+.delay-4 { --motion-delay: 400ms; }
+.delay-5 { --motion-delay: 500ms; }
+@keyframes driftSlow {
+  0% { transform: translate3d(-1.5%, 0.5%, 0) scale(1); }
+  50% { transform: translate3d(1.5%, -0.5%, 0) scale(1.02); }
+  100% { transform: translate3d(-1.5%, 0.5%, 0) scale(1); }
+}
+
+@keyframes driftMedium {
+  0% { transform: translate3d(-2%, 1%, 0) scale(1); }
+  50% { transform: translate3d(2%, -1%, 0) scale(1.015); }
+  100% { transform: translate3d(-2%, 1%, 0) scale(1); }
+}
+
+@keyframes driftFast {
+  0% { transform: translate3d(-3%, 1%, 0) scale(1); }
+  50% { transform: translate3d(3%, -1%, 0) scale(1.01); }
+  100% { transform: translate3d(-3%, 1%, 0) scale(1); }
+}
+
+@keyframes pulseSoft {
+  0% { opacity: 0.92; }
+  50% { opacity: 0.98; }
+  100% { opacity: 0.92; }
+}
+
+.bg-drift-slow { animation: driftSlow 60s ease-in-out infinite; }
+.bg-drift-medium { animation: driftMedium 40s ease-in-out infinite; }
+.bg-drift-fast { animation: driftFast 28s ease-in-out infinite; }
+.bg-pulse { animation: pulseSoft 16s ease-in-out infinite; }
+
+/* Premium micro-interactions */
+.hover-lift {
+  transition: transform var(--dur-quick, 180ms) var(--easing-soft, cubic-bezier(0.22,1,0.36,1)),
+              box-shadow var(--dur-quick, 180ms) var(--easing-soft, cubic-bezier(0.22,1,0.36,1));
+  will-change: transform, box-shadow;
+}
+.hover-lift:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
+
+.hover-glow {
+  transition: box-shadow var(--dur-quick, 180ms) var(--easing-soft, cubic-bezier(0.22,1,0.36,1));
+}
+.hover-glow:hover { box-shadow: 0 0 0 1px color-mix(in oklab, var(--accent) 30%, transparent), 0 8px 24px color-mix(in oklab, var(--accent) 14%, transparent); }
+
+/* Button sheen */
+.btn-sheen {
+  position: relative;
+  overflow: hidden;
+}
+.btn-sheen::before {
+  content: "";
+  position: absolute;
+  top: 0; left: -150%; height: 100%; width: 140%;
+  background: linear-gradient(110deg, transparent 0%, rgba(255,255,255,0.18) 20%, transparent 40%);
+  transform: skewX(-12deg);
+}
+.btn-sheen:hover::before { animation: sheen 1.2s ease-out; }
+
+@keyframes sheen { from { left: -150%; } to { left: 150%; } }
+
+/* Arcade hover blinker: continuous gentle up/down while hovered */
+@keyframes blinkY {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-3px); }
+  100% { transform: translateY(0); }
+}
+
+/* Smaller amplitude for interactive controls */
+@keyframes blinkYSmall {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-2px); }
+  100% { transform: translateY(0); }
+}
+
+.arcade-blink { position: relative; }
+/* Animate inner content so the hover target stays still */
+.arcade-blink > * { will-change: transform; }
+.arcade-blink:hover > * { animation: blinkY 820ms ease-in-out infinite; }
+
+/* Arcade hover only on interactive controls within game */
+.arcade-game button,
+.arcade-game .btn,
+.arcade-game [role="button"],
+.arcade-game .option,
+.arcade-game .answer-option,
+.arcade-game .choice {
+  will-change: transform;
+}
+.arcade-game button:hover,
+.arcade-game .btn:hover,
+.arcade-game [role="button"]:hover,
+.arcade-game .option:hover,
+.arcade-game .answer-option:hover,
+.arcade-game .choice:hover {
+  animation: blinkYSmall 700ms ease-in-out infinite;
+}

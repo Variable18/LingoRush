@@ -1,0 +1,18 @@
+module.exports = [
+  { de: "Wasser", en: "Water" },
+  { de: "Haus", en: "House" },
+  { de: "Brot", en: "Bread" },
+  { de: "Buch", en: "Book" },
+  { de: "Apfel", en: "Apple" },
+  { de: "Hund", en: "Dog" },
+  { de: "Katze", en: "Cat" },
+  { de: "Stuhl", en: "Chair" },
+  { de: "Tisch", en: "Table" },
+  { de: "Milch", en: "Milk" },
+  { de: "Auto", en: "Car" },
+  { de: "Baum", en: "Tree" },
+  { de: "Schule", en: "School" },
+  { de: "Freund", en: "Friend" },
+  { de: "Stadt", en: "City" },
+  { de: "Land", en: "Country" },
+];

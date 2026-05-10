@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* LIGHT MODE PALETTE (Default) */
+    --color-bg-base: 245 245 240;     /* #f5f5f0 - The original beige background */
+    --color-bg-card: 255 255 255;     /* #ffffff */
+    --color-bg-subtle: 249 250 251;   /* gray-50 */
+    --color-text-main: 17 24 39;      /* gray-900 */
+    --color-text-muted: 156 163 175;  /* gray-400 */
+    --color-border: 243 244 246;      /* gray-100 */
+
+    /* Special: Black elements in Light Mode become Grey in Dark Mode */
+    --color-card-inverse: 0 0 0;      /* Black */
+
+    /* Legacy/Compat Variables */
+    --text: #111827;
+    --surface: #ffffff;
+    --line: rgba(0,0,0,0.08); 
+  }
+
+  :root[data-theme="dark"] {
+    /* DARK MODE PALETTE */
+    --color-bg-base: 0 0 0;           /* #000000 */
+    --color-bg-card: 32 32 32;        /* Grey for cards */
+    --color-bg-subtle: 24 24 24;      /* Slightly lighter black */
+    --color-text-main: 255 255 255;   /* White text */
+    --color-text-muted: 156 163 175;  /* gray-400 */
+    --color-border: 64 64 64;         /* Dark border */
+    
+    /* Special: Black elements become Grey */
+    --color-card-inverse: 32 32 32;   /* Grey */
+
+    /* Legacy/Compat Variables */
+    --text: #ffffff;
+    --surface: #202020;
+    --line: rgba(255,255,255,0.15);
+  }
+
+  body {
+    background-color: rgb(var(--color-bg-base));
+    color: rgb(var(--color-text-main));
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+}
+
+@layer utilities {
+  .font-outline-2 {
+    -webkit-text-stroke: 2px currentColor;
+    color: transparent; 
+  }
+}
+
+.mg-card {
+  @apply bg-white rounded-xl p-6 shadow;
+}
+
+/* Premium, subtle background motion */
+@keyframes driftSlow {
+  0% { transform: translate3d(-1.5%, 0.5%, 0) scale(1); }
+  50% { transform: translate3d(1.5%, -0.5%, 0) scale(1.02); }
+  100% { transform: translate3d(-1.5%, 0.5%, 0) scale(1); }
+}
+
+@keyframes driftMedium {
+  0% { transform: translate3d(-2%, 1%, 0) scale(1); }
+  50% { transform: translate3d(2%, -1%, 0) scale(1.015); }
+  100% { transform: translate3d(-2%, 1%, 0) scale(1); }
+}
+
+@keyframes driftFast {
+  0% { transform: translate3d(-3%, 1%, 0) scale(1); }
+  50% { transform: translate3d(3%, -1%, 0) scale(1.01); }
+  100% { transform: translate3d(-3%, 1%, 0) scale(1); }
+}
+
+@keyframes pulseSoft {
+  0% { opacity: 0.92; }
+  50% { opacity: 0.98; }
+  100% { opacity: 0.92; }
+}
+
+.bg-drift-slow { animation: driftSlow 60s ease-in-out infinite; }
+.bg-drift-medium { animation: driftMedium 40s ease-in-out infinite; }
+.bg-drift-fast { animation: driftFast 28s ease-in-out infinite; }
+.bg-pulse { animation: pulseSoft 16s ease-in-out infinite; }

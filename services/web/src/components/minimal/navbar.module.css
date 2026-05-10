@@ -1,0 +1,32 @@
+
+.nav {
+  display: flex;
+  justify-content: center;
+  padding: 14px 0;
+  width: 100%;
+}
+
+.list {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  list-style: none;
+  margin: 0;
+  padding: 0 8px;
+  width: 100%;
+}
+
+.link {
+  color: #0a0a0a;
+  text-decoration: none;
+  font-size: 15px;
+  letter-spacing: 0.06em;
+  text-transform: none;
+  opacity: 0.8;
+  display: inline-block;           /* isolate transform */
+  transition: transform 120ms ease, opacity 120ms ease;
+  will-change: transform;
+  transform-origin: center;        /* scale from center */
+}
+.link:hover { opacity: 1; transform: scale(1.18); position: relative; z-index: 2; }
+.active { opacity: 1; }

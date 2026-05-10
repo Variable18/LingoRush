@@ -1,0 +1,132 @@
+.page {
+  background: #f5f5f0; /* off-white */
+  color: #0a0a0a;
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 24px 24px 80px;
+}
+
+.header {
+  text-align: center;
+  font-size: 14px;
+  letter-spacing: 0.06em;
+  margin-top: 4px;
+  margin-bottom: 12px;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  text-align: center;
+  padding: 48px 0 12px;
+}
+
+.headline {
+  font-size: clamp(40px, 8vw, 96px);
+  line-height: 0.95;
+  font-weight: 300;
+  letter-spacing: 0.01em;
+}
+.headline i {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 500;
+}
+.sub {
+  max-width: 700px;
+  margin-top: 18px;
+  opacity: 0.75;
+  font-size: 14px;
+}
+
+.figure {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 28px;
+}
+.figureInner { width: clamp(220px, 32vw, 420px); margin: 0 auto; }
+.figureInner svg { width: 100%; height: auto; display: block; }
+/* Hide any dashed guide lines embedded in SVGs */
+.figureInner svg [stroke-dasharray],
+.illustration svg [stroke-dasharray],
+/* Common authoring names for dotted guides/grids */
+svg [class*="dot"],
+svg [id*="dot"],
+svg [class*="grid"],
+svg [id*="grid"],
+svg [class*="dotted"],
+svg [id*="dotted"],
+/* Dashes hinted via inline style attribute */
+svg [style*="stroke-dasharray"],
+/* Pattern-based dotted backgrounds */
+svg pattern,
+svg defs pattern,
+svg [fill*="pattern"] {
+  display: none !important;
+}
+
+/* Landing page specific: hide gray dot texture paths inside landing.svg */
+.landingIllustration [style*="fill:#b9b9b9"],
+.landingIllustration [style*="fill:#a3a3a3"],
+.landingIllustration [style*="fill:#8c8c8c"],
+.landingIllustration [style*="fill:#767676"],
+.landingIllustration [style*="fill:#606060"],
+.landingIllustration [style*="fill:#494949"],
+.landingIllustration [style*="fill:#333333"] {
+  display: none !important;
+}
+
+.midNavStage {
+  display: flex;
+  justify-content: center;
+  margin: 40px 0 28px;
+}
+
+.simpleList {
+  margin: 24px auto 0;
+  padding: 0;
+  list-style: none;
+  max-width: 640px;
+}
+.simpleItem { padding: 6px 0; opacity: 0.85; }
+
+/* Services reel removed (no animations) */
+
+/* Split layout for auth pages */
+.split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 24px;
+}
+.pane {
+  padding: 12px 0;
+}
+/* ===== Remove decorative dotted / diagonal SVG lines ===== */
+.figureInner svg path,
+.figureInner svg line {
+  stroke-dasharray: none !important;
+  stroke: none !important;
+}
+
+/* Safety: prevent any guide-like SVG strokes */
+.figureInner svg * {
+  outline: none !important;
+  vector-effect: non-scaling-stroke;
+}
+/* 🔴 Kill decorative pseudo-elements */
+.page::before,
+.page::after,
+.hero::before,
+.hero::after,
+body::before,
+body::after {
+  content: none !important;
+  display: none !important;
+}

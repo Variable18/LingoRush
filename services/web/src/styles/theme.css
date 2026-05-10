@@ -1,0 +1,105 @@
+:root {
+  /* Palette - LINKED TO TAILWIND VARIABLES from styles.css */
+  --bg: rgb(var(--color-bg-base)); 
+  --surface: rgb(var(--color-bg-card));
+  --paper: rgb(var(--color-bg-subtle));
+  --text: rgb(var(--color-text-main));
+  --muted: rgb(var(--color-text-muted));
+  --line: rgb(var(--color-text-main) / 0.08); /* Derived from text color */
+  
+  /* restrained accent (teal) */
+  --accent: #2EE6A6;
+  --accent-weak: rgba(46, 230, 166, 0.10);
+
+  /* Typography */
+  --font-sans: 'IBM Plex Sans', system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans', sans-serif;
+  --tracking-title: 0.01em;
+  --tracking-body: 0.005em;
+
+  /* Motion */
+  --easing-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  --easing-standard: cubic-bezier(0.2, 0, 0, 1);
+  --easing-deluxe: cubic-bezier(0.25, 1, 0.5, 1);
+  --dur-quick: 180ms;
+  --dur-base: 320ms;
+  --dur-slow: 600ms;
+  --dur-xl: 900ms;
+
+  /* Radius & Shadow */
+  --radius-lg: 16px;
+  --radius-md: 12px;
+  --radius-sm: 8px;
+  --shadow-soft: 0 10px 30px rgba(0,0,0,0.35);
+}
+
+/* Removed html, body rule to prevent conflict with styles.css */
+/* html, body {
+  background: var(--bg);
+  color: var(--text);
+} */
+
+::selection {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+/* Smooth focus rings */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  transition: outline-color var(--dur-quick) var(--easing-standard);
+}
+
+/* Subtle separators */
+.ui-separator {
+  height: 1px;
+  width: 100%;
+  background: var(--line);
+}
+
+/* Glass surface */
+.glass-surface {
+  background: color-mix(in oklab, white 5%, transparent);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  backdrop-filter: blur(8px);
+}
+
+/* Premium button base */
+.btn-base {
+  border-radius: 999px;
+  padding: 0.75rem 1.25rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: var(--tracking-body);
+  transition: transform var(--dur-quick) var(--easing-soft),
+              background-color var(--dur-quick) var(--easing-soft),
+              border-color var(--dur-quick) var(--easing-soft),
+              color var(--dur-quick) var(--easing-soft);
+  will-change: transform;
+}
+
+.btn-accent {
+  color: var(--accent);
+  background: var(--accent-weak);
+  border: 1px solid color-mix(in oklab, var(--accent) 30%, transparent);
+}
+.btn-accent:hover {
+  transform: translateY(-1px);
+  background: color-mix(in oklab, var(--accent) 14%, transparent);
+  border-color: color-mix(in oklab, var(--accent) 45%, transparent);
+}
+
+.btn-ghost {
+  color: color-mix(in oklab, var(--text) 85%, transparent);
+}
+.btn-ghost:hover {
+  color: var(--text);
+}
+
+/* Headings */
+.display-title {
+  font-weight: 300;
+  letter-spacing: var(--tracking-title);
+  line-height: 1.18;
+}
