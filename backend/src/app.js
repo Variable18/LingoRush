@@ -7,9 +7,8 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 
 const authRoutes = require("./routes/auth");
-const authMiddleware = require("../middleware/authMiddleware");
-const progressRoutes = require("../routes/progressRoutes");
-
+const authMiddleware = require("./middleware/authMiddleware");
+const progressRoutes = require("./routes/progressRoutes");
 const app = express();
 
 // ======================
