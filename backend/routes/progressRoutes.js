@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Progress = require("../models/Progress");
-const User = require("../src/models/User");
+const User = require("../models/User");
 
 /* GET leaderboard - TOP 50 by XP */
 router.get("/leaderboard", async (req, res) => {
